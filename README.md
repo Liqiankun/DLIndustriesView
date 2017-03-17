@@ -1,2 +1,1 @@
-# DLIndustriesView
-Choose industry
+![](https://github.com/Liqiankun/DLIndustriesView/raw/master/DLIndustriesView.png)
