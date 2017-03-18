@@ -1,7 +1,7 @@
 //
 //  DLIndustryViewController.h
 //
-//  Created by FT_David on 16/7/11.
+//  Created by dl_David on 16/7/11.
 //  Copyright © 2016年 Benjamin Gordon. All rights reserved.
 //
 
@@ -22,10 +22,10 @@
 @property(nonatomic,copy)NSString *areas;
 @property(nonatomic,copy)NSString *roles;
 
--(void)ft_prepareData;
--(void)ft_uiConfig;
--(void)ft_tableViewReloadAction;
--(void)ft_setNavigationTitleWithSelected:(BOOL)selected section:(NSInteger)section andButtonIndex:(NSInteger)buttonIndex;
+-(void)dl_prepareData;
+-(void)dl_uiConfig;
+-(void)dl_tableViewReloadAction;
+-(void)dl_setNavigationTitleWithSelected:(BOOL)selected section:(NSInteger)section andButtonIndex:(NSInteger)buttonIndex;
 
 @end
 
@@ -34,34 +34,32 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.navigationBar.translucent = NO;
-    [self ft_prepareData];
-    [self ft_uiConfig];
+    [self dl_prepareData];
+    [self dl_uiConfig];
     self.areas = @"";
     self.roles = @"";
 }
 
 #pragma mark - PrivateMethod
--(void)ft_prepareData
+-(void)dl_prepareData
 {
     self.dataArray = [DLIndustryModel getIndustryData];
 }
 
--(void)ft_uiConfig
+-(void)dl_uiConfig
 {
-
     self.view.backgroundColor = [UIColor colorWithHexString:@"#f0f0f0"];
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"#f0f0f0"];
     self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 10)];
     self.tableView.tableHeaderView.backgroundColor = [UIColor colorWithHexString:@"#f0f0f0"];
-  
     self.navigationItem.title = @"行业选择";
 }
 
--(void)ft_tableViewReloadAction{
+-(void)dl_tableViewReloadAction{
     [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0],[NSIndexPath indexPathForRow:0 inSection:1],[NSIndexPath indexPathForRow:0 inSection:2],[NSIndexPath indexPathForRow:0 inSection:3],[NSIndexPath indexPathForRow:0 inSection:4],[NSIndexPath indexPathForRow:0 inSection:5],[NSIndexPath indexPathForRow:0 inSection:6]] withRowAnimation:UITableViewRowAnimationFade];
 }
 
--(void)ft_setNavigationTitleWithSelected:(BOOL)selected section:(NSInteger)section andButtonIndex:(NSInteger)buttonIndex
+-(void)dl_setNavigationTitleWithSelected:(BOOL)selected section:(NSInteger)section andButtonIndex:(NSInteger)buttonIndex
 {
     if (!selected) {
         self.navigationItem.title = @"行业选择";
@@ -122,7 +120,7 @@
         weakSelf.model = model;
         model.selected = selected;
         weakSelf.selected = selected;
-        [weakSelf ft_setNavigationTitleWithSelected:selected section:section andButtonIndex:buttonIndex];
+        [weakSelf dl_setNavigationTitleWithSelected:selected section:section andButtonIndex:buttonIndex];
         if (weakSelf.section != section) {
             NSRange range = NSMakeRange(self.section, 1);
             NSIndexSet *sectionSet = [NSIndexSet indexSetWithIndexesInRange:range];
@@ -130,7 +128,7 @@
         }
         weakSelf.section = section;
         weakSelf.index = buttonIndex;
-        [weakSelf ft_tableViewReloadAction];
+        [weakSelf dl_tableViewReloadAction];
         
         if (buttonTitle == nil) {
             weakSelf.areas = nil;
